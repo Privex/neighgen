@@ -82,6 +82,31 @@ The PeeringDB local DB sync functionality is provided by the `peeringdb` package
 
 # Installing
 
+## PostgreSQL packages
+
+Due to the `peeringdb` package requiring database connectivity, we bundle the standard Postgres
+python package `psycopg2`
+
+Unfortunately this means you may need to install the postgres development headers before installing
+the package via PyPi or from git.
+
+For debian based systems (Ubuntu, Debian, Linux Mint, Kali, etc.), you can install them via apt:
+
+```sh
+apt install -y libpq-dev postgresql-common
+```
+
+On Alpine, you can install them via APK:
+
+```sh
+apk add postgresql-dev libpq
+```
+
+For other distros, you should find the main postgres dev headers labelled under `postgresql-dev` , `postgresql-common` ,
+`postgresql-client-dev` , or something similar.
+
+You'll find the postgres client headers under `libpq-dev` , `libpq` or something similar.
+
 ## From PyPi
 
 We recommend installing the package on the newest version of Python that your OS has available.
