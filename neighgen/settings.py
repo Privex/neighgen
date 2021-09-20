@@ -74,7 +74,7 @@ CFGTYPE_MAP = DictObject(
 )
 _CONFIG_FILES: List[str] = env('CONFIG_FILES', [
     'config.yaml', 'config.yml', 'ngen.yaml', 'ngen.yml',
-    PWD / 'config.yaml', PWD / 'config.yml', PWD / 'ngen.yaml', PWD / 'ngen.yml',
+    str(PWD / 'config.yaml'), str(PWD / 'config.yml'), str(PWD / 'ngen.yaml'), str(PWD / 'ngen.yml'),
     '~/.neighgen/config.yaml', '~/.neighgen/config.yml'
     '~/.ngen/config.yaml', '~/.ngen/config.yml'
     '~/.ngen.yaml', '~/.ngen.yml'
