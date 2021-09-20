@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+peeringdb = "1.2.1"
+psycopg2 = "*"
+django = "==2.2.*"
+privex-helpers = {version = ">=3.0", extras = ["setuppy"]}
+django-peeringdb = "==2.9.*"
+pyyaml = "*"
+jinja2 = "*"
+rich = "*"
+privex-db = "*"
+dicttoxml = "*"
+python-dotenv = "*"
+
+[dev-packages]
+jupyter = "*"
+pytest = "*"
+twine = "*"
+setuptools = "*"
+
+[requires]
+python_version = "3.9"

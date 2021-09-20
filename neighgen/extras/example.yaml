@@ -1,0 +1,95 @@
+
+app:
+  debug: false
+  log_level: WARNING
+
+  ###############
+  # This controls which neighbour template file is used for neighbour generation by default.
+  # Simply set this to the appropriate OS name, as per 'template_map', and it'll be used for
+  # neighbour generation when no OS is specified on the CLI.
+  ###############
+  default_os: nxos
+
+  ###############
+  # Some internet exchanges have long IXP names on PeeringDB. This can result in long and overly verbose
+  # peer descriptions when generating neighbour configs, e.g. "DE-CIX Lisbon: DE-CIX Lisbon Peering LAN"
+  #
+  # To prevent this issue, you can enable 'ix_trim', which splits IX names by spaces/tabs, and then uses only
+  # the first 'ix_trim_words' words for their name in the description.
+  #
+  # By default, ix_trim_words is set to 1 (word), which would trim "DE-CIX Lisbon: DE-CIX Lisbon Peering LAN"
+  # down to just "DE-CIX" if you enable ix_trim.
+  ###############
+  ix_trim: false
+  ix_trim_words: 1
+
+  ###############
+  # With OS's that have per-neighbor address-family configuration, such as Cisco NX-OS, the 'lock_version'
+  # setting controls whether or not to ensure that the opposite address version is disabled in each neighbor,
+  # e.g. for an IPv6 neighbour, it would add 'no address-family ipv4 unicast', and for an IPv4 neighbour
+  # it would add 'no address-family ipv6 unicast'.
+  ###############
+  lock_version: true
+
+  ###############
+  # This dictionary holds configuration options for 'max_prefixes' - e.g. the default maximum number
+  # of IPv4/IPv6 prefixes which should be used if we can't retrieve the max numbers from PeeringDB,
+  # as well as what your router should do when it gets close to / reaches the max prefixes.
+  ###############
+  # max_prefixes:
+  #   action: restart
+  #   config: '{threshold} {action} {interval}'
+  #   interval: 30
+  #   threshold: 90
+  #   v4: 10000
+  #   v6: 10000
+  #
+
+  ###############
+  # These options control the default template names to use for 'peer-policy', 'peer-session', and 'template peer'
+  # when generating a neighbour configuration.
+  ###############
+  peer_policy_v4: PEER-V4
+  peer_policy_v6: PEER-V6
+  peer_session: EBGP
+  peer_template: PEER
+
+
+  ###############
+  # This dictionary is a map between OS names and their respective template filename.
+  #
+  # If you've wrote a Jinja2 template file in 'ngen/templates/' and want to add a new OS option,
+  # then you can uncomment the below base template map, and then add your own template mapping to it.
+  ###############
+  # template_map:
+  #   ios: neigh_ios.j2
+  #   nxos: neigh_nxos.j2
+  #
+
+orm:
+  backend: django_peeringdb
+  database:
+    # Options: sqlite3, mysql, postgresql
+    engine: postgresql
+    # Leave blank for localhost
+    host: ''
+    # Name of the database to store the data in.
+    # If using sqlite3 engine, then this should be the filename/path to the DB.
+    name: peeringdb
+    # Database user password (not applicable for sqlite3)
+    password: ''
+    # Database server port. Usually 3306 for MySQL/MariaDB, or 5432 for PostgreSQL (not applicable for sqlite3)
+    port: 5432
+    # Database username (not applicable for sqlite3)
+    user: peeringdb
+  # migrate: true
+  # secret_key: bnD44SwkMtFJESErC2EZ2Fn4K5HMfHN7SnkNefzJ2LLcf45ZEs
+sync:
+  # Your PeeringDB account username
+  user: example
+  # Your PeeringDB account password
+  password: ''
+  # strip_tz: 1
+  # timeout: 120
+  # url: https://www.peeringdb.com/api
+  # only: []

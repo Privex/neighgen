@@ -1,0 +1,12 @@
+peeringdb==1.2.1
+psycopg2
+django==2.2.*
+privex-helpers[setuppy]>=3.0
+setuptools
+django-peeringdb==2.9.*
+pyyaml
+jinja2
+rich
+privex-db
+dicttoxml
+python-dotenv

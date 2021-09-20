@@ -1,0 +1,29 @@
+orm:
+  backend: django_peeringdb
+  database:
+    # Options: sqlite3, mysql, postgresql
+    engine: postgresql
+    # Leave blank for localhost
+    host: 'ngen-pg'
+    # Name of the database to store the data in.
+    # If using sqlite3 engine, then this should be the filename/path to the DB.
+    name: peeringdb
+    # Database user password (not applicable for sqlite3)
+    password: 'peeringdb'
+    # Database server port. Usually 3306 for MySQL/MariaDB, or 5432 for PostgreSQL (not applicable for sqlite3)
+    port: 5432
+    # Database username (not applicable for sqlite3)
+    user: peeringdb
+#  migrate: true
+#  secret_key: ''
+
+sync:
+  only: []
+  # Your PeeringDB account username
+  user: example
+  # Your PeeringDB account password
+  password: ''
+#  strip_tz: 1
+#  timeout: 0
+#  url: https://www.peeringdb.com/api
+

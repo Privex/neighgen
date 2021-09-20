@@ -1,0 +1,5 @@
+include neighgen/templates/neigh_ios.j2
+include neighgen/templates/neigh_nxos.j2
+include neighgen/extras/example.yaml
+include neighgen/extras/example.env
+include neighgen/extras/example.dk-config.yaml

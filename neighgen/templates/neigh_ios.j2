@@ -1,0 +1,26 @@
+{% if ipv4_address %}
+neighbor {{ ipv4_address }} remote-as {{ asn }}
+{% if peer_session %}neighbor {{ ipv4_address }} inherit peer-session {{ peer_session }}{% endif %}
+neighbor {{ ipv4_address }} description {{ as_name }} AS{{ asn }} v4 Peer {{ peer_idx }} via {{ ix_name }} {{ port }}
+{% endif %}
+{% if ipv6_address %}
+neighbor {{ ipv6_address }} remote-as {{ asn }}
+{% if peer_session %}neighbor {{ ipv6_address }} inherit peer-session {{ peer_session }}{% endif %}
+neighbor {{ ipv6_address }} description {{ as_name }} AS{{ asn }} v6 Peer {{ peer_idx }} via {{ ix_name }} {{ port }}
+{% endif %}
+{% if ipv4_address %}
+address-family ipv4
+    neighbor {{ ipv4_address }} activate{% if peer_policy_v4 %}
+    neighbor {{ ipv4_address }} inherit peer-policy {{ peer_policy_v4 }}{% endif %}
+    {% if use_max_prefixes and max_prefixes_v6 %}
+    neighbor {{ ipv4_address }} maximum-prefix {{ max_prefixes_v4 }} {{ max_prefix_config }}{% endif %}
+exit
+{% endif %}
+{% if ipv6_address %}
+address-family ipv6
+    neighbor {{ ipv6_address }} activate{% if peer_policy_v6 %}
+    neighbor {{ ipv6_address }} inherit peer-policy {{ peer_policy_v6 }}{% endif %}
+    {% if use_max_prefixes and max_prefixes_v6 %}
+    neighbor {{ ipv6_address }} maximum-prefix {{ max_prefixes_v6 }} {{ max_prefix_config }}{% endif %}
+exit
+{% endif %}

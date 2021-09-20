@@ -1,0 +1,24 @@
+{% if ipv4_address %}
+neighbor {{ ipv4_address }}
+{% if peer_template %}inherit peer {{ peer_template }}{% endif %}
+remote-as {{ asn }}
+description {{ as_name }} AS{{ asn }} v4 Peer {{ peer_idx }} via {{ ix_name }} {{ port }}
+{% if use_max_prefixes and max_prefixes_v4 %}
+address-family ipv4 unicast
+    maximum-prefix {{ max_prefixes_v4 }} {{ max_prefix_config }}
+exit{% endif %}
+{% if lock_version %}no address-family ipv6 unicast
+exit{% else %}exit{% endif %}
+{% endif %}
+{% if ipv6_address %}
+neighbor {{ ipv6_address }}
+{% if peer_template %}inherit peer {{ peer_template }}{% endif %}
+remote-as {{ asn }}
+description {{ as_name }} AS{{ asn }} v6 Peer {{ peer_idx }} via {{ ix_name }} {{ port }}
+{% if use_max_prefixes and max_prefixes_v6 %}
+address-family ipv6 unicast
+    maximum-prefix {{ max_prefixes_v6 }} {{ max_prefix_config }}
+exit{% endif %}
+{% if lock_version %}no address-family ipv4 unicast
+exit{% else %}exit{% endif %}
+{% endif %}

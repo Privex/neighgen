@@ -1,0 +1,31 @@
+*.log
+*.swp
+/.env
+/.env.*
+.pytest_cache
+__pycache__
+.idea
+.vscode
+
+/*.pyz
+/*.yml
+/*.yaml
+!example.yaml
+!example.dk-config.yaml
+!example.env
+
+# PyPi build files
+.coverage
+build
+dist
+*.egg-info
+
+# Local development files
+/venv/
+/venv_*/
+/dev_*.py
+/*.sqlite*
+/*.db
+/privex/db
+/out
+
